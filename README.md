@@ -1,4 +1,4 @@
-# TestingPractices_TestNG_UI
+# TestNG UI Test Lab
 
 ![Java](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=java&logoColor=white)
 ![TestNG](https://img.shields.io/badge/TestNG-FF9E2C?style=for-the-badge&logo=testng&logoColor=white)
@@ -7,7 +7,7 @@
 ![Maven](https://img.shields.io/badge/Maven-C71A36?style=for-the-badge&logo=apachemaven&logoColor=white)
 
 ## 💡 Introduction
-Welcome to the **TestingPractices_TestNG_UI** repository! This project is designed for SDET students to reinforce their knowledge through practical lessons. It demonstrates how to perform test automation using **TestNG** with TestNG-specific features like annotations, parallel execution, and data providers.
+Welcome to the **testng-ui-test-lab** repository! This project is designed for SDET students to reinforce their knowledge through practical lessons. It demonstrates how to perform test automation using **TestNG** with TestNG-specific features like annotations, parallel execution, and data providers.
 
 ## Table of Contents
 - [💡 Introduction](#💡-introduction)
@@ -27,12 +27,12 @@ Welcome to the **TestingPractices_TestNG_UI** repository! This project is design
 ### Cloning the Repository
 To install TestNGCurrent, clone the repository to your local machine:
 ```bash
-git clone https://github.com/ChatGTHB/TestingPractices_TestNG_UI
+git clone https://github.com/cihat-kose/testng-ui-test-lab.git
 ```
 ### Importing into IntelliJ IDEA from VCS
 1. Open IntelliJ IDEA.
 2. Go to `File` > `New` > `Project from Version Control`.
-3. In the dialog, select `Git` and enter the repository URL: `https://github.com/ChatGTHB/TestingPractices_TestNG_UI`.
+3. In the dialog, select `Git` and enter the repository URL: `https://github.com/cihat-kose/testng-ui-test-lab`.
 4. Click `Clone`.
 
 ### Adding Dependencies from Maven
@@ -142,7 +142,7 @@ If you encounter any issues:
 For additional help, please open an issue in the GitHub repository.
 
 ## 👥 Contributors
-- [ChatGTHB](https://github.com/ChatGTHB)
+- [cihat-kose](https://github.com/cihat-kose)
 
 ## 🤝 Contributing
 Contributions are welcome! Please follow these steps:
