@@ -5,77 +5,79 @@ import org.testng.annotations.*;
 public class TestNGAnnotationsExample {
 
     /**
-     * @BeforeSuite
-        * @BeforeTest
-             * @BeforeGroups
-                * @BeforeClass
-                  * @BeforeMethod
-                            * @Test
-                            * @Test
-                 * @AfterMethod
-                 * @AfterClass
-             * @AfterGroups
-         * @AfterTest
-     * @AfterSuit
+       @BeforeSuite
+           @BeforeTest
+               @BeforeGroups
+                   @BeforeClass
+                       @BeforeMethod
+                           @Test
+                           @Test
+                       @AfterMethod
+                   @AfterClass
+               @AfterGroups
+           @AfterTest
+       @AfterSuite
      */
 
-    // Test suite çalışmadan önce çalışır
+    // Runs once before the entire test suite
     @BeforeSuite
     public void beforeSuite() {
-        System.out.println("Before Suite çalıştı.");
+        System.out.println("Before Suite executed.");
     }
 
-    // Test grubundan önce çalışır
+    // Runs before the tests defined in testng.xml
     @BeforeTest
     public void beforeTest() {
-        System.out.println("Before Test çalıştı.");
+        System.out.println("Before Test executed.");
     }
 
-    // Sınıftan önce çalışır
+    // Runs once before any method in the current class
     @BeforeClass
     public void beforeClass() {
-        System.out.println("Before Class çalıştı.");
+        System.out.println("Before Class executed.");
     }
 
-    // Her test metodundan önce çalışır
+    // Runs before each test method
+    // Common place for setup/preconditions
     @BeforeMethod
     public void beforeMethod() {
-        System.out.println("Before Method çalıştı.");
+        System.out.println("Before Method executed.");
     }
 
-    // İlk test methodu
+    // First test method
     @Test
     public void testMethodOne() {
-        System.out.println("Test Method One çalıştı.");
+        System.out.println("Test Method One executed.");
     }
 
-    // İkinci test methodu
+    // Second test method
     @Test
     public void testMethodTwo() {
-        System.out.println("Test Method Two çalıştı.");
+        System.out.println("Test Method Two executed.");
     }
 
-    // Her test metodundan sonra çalışır
+    // Runs after each test method
+    // Typically used for cleanup
     @AfterMethod
     public void afterMethod() {
-        System.out.println("After Method çalıştı.");
+        System.out.println("After Method executed.");
     }
 
-    // Sınıftan sonra çalışır
+    // Runs once after all test methods in the current class
     @AfterClass
     public void afterClass() {
-        System.out.println("After Class çalıştı.");
+        System.out.println("After Class executed.");
     }
 
-    // Test grubundan sonra çalışır
+    // Runs after all tests defined in testng.xml
     @AfterTest
     public void afterTest() {
-        System.out.println("After Test çalıştı.");
+        System.out.println("After Test executed.");
     }
 
-    // Test suite tamamlandıktan sonra çalışır
+    // Runs once after the entire test suite
     @AfterSuite
     public void afterSuite() {
-        System.out.println("After Suite çalıştı.");
+        System.out.println("After Suite executed.");
     }
 }

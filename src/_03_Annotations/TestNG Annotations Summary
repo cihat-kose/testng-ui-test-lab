@@ -1,46 +1,47 @@
-
-Konu: TestNG Annotations
+Topic: TestNG Annotations
 
 Summary:
 
-TestNG framework'ünde testler çeşitli annotations (yani, notlar) ile yönetilir.
-Bu anotasyonlar, test metodlarının ne zaman çalıştırılacağını ve nasıl bir sıraya konulacağını belirler.
-İşte TestNG'de kullanılan önemli annotationlar:
+In the TestNG framework, tests are managed using various annotations.
+These annotations control when and how each test method is executed.
+Below are the key annotations used in TestNG:
 
 1. @BeforeSuite:
-   - Test çalıştırılmadan önce bir kez çalıştırılır.
-     Tüm testler başlamadan önce yapılması gereken işlemleri burada tanımlayabilirsiniz.
+   - Runs once before the entire test suite.
+     Useful for global setup tasks before any tests start.
 
 2. @BeforeTest:
-   - Belirtilen testlerden önce çalışır. Genellikle bir test grubunun başında çalıştırılır.
+   - Runs before any test methods belonging to the <test> tag in testng.xml.
 
 3. @BeforeGroups:
-   - Belirli bir grup test çalıştırılmadan önce çalıştırılır.
+   - Runs before the first test method of specified groups.
 
 4. @BeforeClass:
-   - Her sınıfın çalıştırılmasından önce bir kez çalışır. Aynı sınıftaki tüm testlerden önce bir kez çalışır.
+   - Runs once before the first test method in the current class.
 
 5. @BeforeMethod:
-   - Her test metodundan önce çalıştırılır. Genellikle testten önce yapılması gereken setup işlemleri burada yer alır.
+   - Runs before each test method.
+     Commonly used for setting up preconditions.
 
 6. @Test:
-   - Test metodlarını belirtir. TestNG bu annotasyonu taşıyan metodları test olarak algılar ve çalıştırır.
+   - Marks a method as a test to be executed by TestNG.
 
 7. @AfterMethod:
-   - Her test metodundan sonra çalıştırılır. Cleanup (temizlik) işlemleri genellikle burada yapılır.
+   - Runs after each test method.
+     Commonly used for cleanup tasks.
 
 8. @AfterClass:
-   - Sınıftaki tüm testler bittikten sonra bir kez çalışır.
+   - Runs once after all test methods in the current class.
 
 9. @AfterGroups:
-   - Belirli bir grup test bittikten sonra çalıştırılır.
+   - Runs after the last test method of specified groups.
 
 10. @AfterTest:
-    - Belirtilen testlerden sonra çalıştırılır. Bir test grubunun sonlandırılmasında kullanılır.
+    - Runs after all test methods in the <test> tag have run.
 
 11. @AfterSuite:
-    - Tüm testler bittikten sonra bir kez çalıştırılır.
-      Genellikle tüm testler tamamlandıktan sonra yapılması gereken işlemler buraya yazılır.
+    - Runs once after the entire test suite.
+      Suitable for final cleanup or reporting tasks.
 
-Bu annotationlar, test metodlarının belirli bir sıralama ile çalıştırılmasını sağlar.
-TestNG, bu annotationlar ile testler arasında bağımlılık ve sıralama yönetimi yapmayı kolaylaştırır.
+These annotations allow you to define the execution order, dependencies,
+and structure of your tests clearly and efficiently.
