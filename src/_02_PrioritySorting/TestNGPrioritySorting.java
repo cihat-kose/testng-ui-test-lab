@@ -3,51 +3,39 @@ package _02_PrioritySorting;
 import org.testng.annotations.Test;
 
 public class TestNGPrioritySorting {
-    /**
-        Bu metot priority = 1 ile tanımlandı.
-        Priority değeri 1 olduğu için, bu metot priority atanmış diğer metotlar arasında
-        en önce çalıştırılacak.
-     */
+
+    // This method is defined with priority = 1.
+    // It will be executed before other priority-assigned methods.
     @Test(priority = 1)
     public void testMethodOne() {
         System.out.println("TestNG Method One - Priority 1");
     }
 
-    /**
-        Bu metot priority = 2 ile tanımlandı.
-        Priority sırası ile bu metot, priority 1 olan metottan sonra çalıştırılacaktır.
-     */
+    // This method has priority = 2.
+    // It will run after the method with priority 1.
     @Test(priority = 2)
     public void testMethodTwo() {
         System.out.println("TestNG Method Two - Priority 2");
     }
 
-    /**
-        Bu metot için de herhangi bir priority atanmadı.
-        TestNG bu metodu alfabetik sırasına göre çalıştıracaktır.
-        `testMethodFive`'den sonra, alfabetik sırada bu metot gelecektir.
-     */
+    // This method has no assigned priority.
+    // TestNG will execute it based on alphabetical order among non-priority methods.
     @Test
     public void testMethodThree() {
-        System.out.println("TestNG Method Three - Priority Yok");
+        System.out.println("TestNG Method Three - No Priority");
     }
 
-    /**
-        Bu metot priority = 3 ile tanımlandı.
-        Priority değeri 3 olduğu için, bu metot diğer priority değerleri olan metotlardan
-        sonra çalıştırılacaktır.
-     */
+    // This method is defined with priority = 3.
+    // It will be executed after the other priority-assigned methods.
     @Test(priority = 3)
     public void testMethodFour() {
         System.out.println("TestNG Method Four - Priority 3");
     }
 
-    /**
-        Bu metot için herhangi bir priority atanmadı.
-        Bu yüzden TestNG bu metodu alfabetik sıraya göre çalıştıracaktır.
-     */
-    @Test()
+    // This method also has no assigned priority.
+    // It will be sorted alphabetically among non-priority methods.
+    @Test
     public void testMethodFive() {
-        System.out.println("TestNG Method Five - Priority Yok");
+        System.out.println("TestNG Method Five - No Priority");
     }
 }
