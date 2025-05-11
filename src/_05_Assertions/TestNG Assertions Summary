@@ -1,39 +1,36 @@
-
-Konu: TestNG Assertions
+Topic: TestNG Assertions
 
 Summary:
 
-TestNG Assertions, testlerin başarılı olup olmadığını doğrulamak için kullanılır.
-Assertions, bir testin sonucunu doğrulamak için önemli bir araçtır.
-Eğer bir assertion başarısız olursa, test durur ve hata mesajı verir.
+TestNG assertions are used to verify whether tests have passed or failed.
+Assertions are essential tools for validating expected outcomes in test cases.
+If an assertion fails, the test is marked as failed and a corresponding error message is thrown.
 
-TestNG’de kullanılan iki tür assertion vardır:
-
-Hard Assert ve Soft Assert.
+There are two main types of assertions in TestNG:
 
 1. Hard Assert:
-   - Testi anında durdurur, assertion başarısız olursa sonraki kod satırlarına geçmez.
-   - TestNG'nin Assert sınıfında yer alır.
-   - Örneğin: Assert.assertEquals(actual, expected);
+   - Immediately stops test execution if the assertion fails.
+   - Belongs to the Assert class in TestNG.
+   - Example: Assert.assertEquals(actual, expected);
 
 2. Soft Assert:
-   - Assertion başarısız olsa bile, testin diğer adımlarını çalıştırır.
-   - Birden fazla assertion kontrol etmek isteniyorsa kullanılır.
-   - TestNG'nin SoftAssert sınıfında yer alır.
-   - Örneğin: softAssert.assertEquals(actual, expected);
+   - Allows the test to continue even if an assertion fails.
+   - Useful when multiple conditions need to be checked within a single test.
+   - Belongs to the SoftAssert class in TestNG.
+   - Example: softAssert.assertEquals(actual, expected);
 
-TestNG'de Sık Kullanılan Assertionlar:
+Commonly Used Assertions in TestNG:
 
-- Assert.assertEquals(): İki değerin eşit olup olmadığını kontrol eder.
-- Assert.assertNotEquals(): İki değerin eşit olmadığını doğrular.
-- Assert.assertTrue(): Verilen koşulun doğru olup olmadığını kontrol eder.
-- Assert.assertFalse(): Verilen koşulun yanlış olup olmadığını kontrol eder.
-- Assert.assertNull(): Verilen değerin null olup olmadığını kontrol eder.
-- Assert.assertNotNull(): Verilen değerin null olmadığını kontrol eder.
+- Assert.assertEquals(): Verifies that two values are equal.
+- Assert.assertNotEquals(): Verifies that two values are not equal.
+- Assert.assertTrue(): Checks if a condition is true.
+- Assert.assertFalse(): Checks if a condition is false.
+- Assert.assertNull(): Checks if the object is null.
+- Assert.assertNotNull(): Checks if the object is not null.
 
-SoftAssert Kullanımı:
-SoftAssert ile tüm assertionlar test bitimine kadar yürütülür ve ardından sonuçlar raporlanır.
-Soft assertleri toplu olarak değerlendirmek için assertAll() metodu çağrılmalıdır.
+Using SoftAssert:
+With SoftAssert, all assertions are executed until the end of the test.
+To evaluate them collectively, the `assertAll()` method must be called.
 
-Kısacası, assertionlar testlerin doğruluğunu garanti altına almak için kullanılır.
-Hard Assert test başarısız olduğunda testi durdururken, Soft Assert testin devam etmesine izin verir.
+In short, assertions ensure the correctness of test outcomes.
+Hard Assert stops the test on failure, while Soft Assert allows it to continue.
