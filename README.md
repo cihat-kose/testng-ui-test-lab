@@ -42,10 +42,10 @@ git clone https://github.com/cihat-kose/testng-ui-test-lab.git
 4. In the dialog, search for the necessary libraries using the Maven coordinates:
     - `org.apache.logging.log4j:log4j-api:2.20.0`
     - `org.apache.logging.log4j:log4j-core:2.20.0`
-    - `commons-io:commons-io:2.11.0`
-    - `org.seleniumhq.selenium:selenium-java:4.25.0`
-    - `org.slf4j:slf4j-nop:1.7.30`
-    - `org.testng:testng:7.9.0`
+    - `commons-io:commons-io:2.18.0`
+    - `org.seleniumhq.selenium:selenium-java:4.32.0`
+    - `org.slf4j:slf4j-nop:2.0.17`
+    - `org.testng:testng:7.11.0`
 5. Click `OK` to add the selected libraries.
 
 For each library, you can also use a higher version if available.
@@ -93,12 +93,12 @@ mvn test
 ## 📦 Dependencies
 | Dependency          | Version | Link                                                                                                                                                                                     |
 |---------------------|---------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Java                | 11+     | [Java](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html)                                                                                                             |
-| TestNG              | 7.9.0   | [TestNG](https://mvnrepository.com/artifact/org.testng/testng/7.9.0)                                                                                                                     |
-| Selenium WebDriver  | 4.25.0  | [Selenium](https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java/4.25.0)                                                                                              |
+| Java                | 21+     | [Java](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html)                                                                                                             |
+| TestNG              | 7.11.0  | [TestNG](https://mvnrepository.com/artifact/org.testng/testng/7.9.0)                                                                                                                     |
+| Selenium WebDriver  | 4.32.0  | [Selenium](https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java/4.25.0)                                                                                              |
 | Log4j2              | 2.20.0  | [Log4j2 API](https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-api/2.20.0), [Log4j2 Core](https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-core/2.20.0) |
-| Commons IO          | 2.11.0  | [Commons IO](https://mvnrepository.com/artifact/commons-io/commons-io/2.11.0)                                                                                                            |
-| SLF4J NOP           | 1.7.30  | [SLF4J NOP](https://mvnrepository.com/artifact/org.slf4j/slf4j-nop/1.7.30)                                                                                                                |                                                                                                       |
+| Commons IO          | 2.18.0  | [Commons IO](https://mvnrepository.com/artifact/commons-io/commons-io/2.11.0)                                                                                                            |
+| SLF4J NOP           | 2.0.17  | [SLF4J NOP](https://mvnrepository.com/artifact/org.slf4j/slf4j-nop/1.7.30)                                                                                                                |                                                                                                       |
 
 ## 🔧 Configuration
 Configuration details can be found in the `testng.xml` file and other relevant configuration files within the project. Log4j2 configuration is set up in the `log4j2.xml` file to provide detailed logging.
