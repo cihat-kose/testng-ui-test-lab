@@ -12,139 +12,116 @@ import java.util.Random;
 public class TutorialsNinjaGroupDependencyTest extends BaseDriver {
 
     /**
-     Task: Kullanıcı Kayıt, Giriş ve Hesap Güncelleme İşlemi (Grup Bağımlılığı)
+         Task: User Registration, Login, and Account Update Operations (Group Dependency)
 
-     Senaryo 1: auth Grubu (Kayıt ve Giriş İşlemi)
+         Scenario 1: "auth" Group – Registration and Login
+         1. Go to the homepage: http://tutorialsninja.com/demo/
+         2. Click on the "My Account" menu and select "Register".
+         3. Fill out the registration form:
+            - First Name, Last Name, Email, Telephone, Password, Confirm Password.
+         4. Check the "Privacy Policy" box and click the "Continue" button.
+         5. Verify that registration is successful (check the success message).
+         6. Logout to verify the session ends.
 
-     1. Anasayfaya gidin: http://tutorialsninja.com/demo/
-     2. "My Account" menüsüne tıklayın ve "Register" bağlantısına tıklayın.
-     3. Kayıt formunda şu alanları doldurun:
-     - First Name, Last Name, Email, Telephone, Password, Confirm Password.
-     4. "Privacy Policy" kutucuğunu işaretleyin ve "Continue" butonuna tıklayın.
-     5. Kayıt işleminin başarılı olduğunu doğrulayın (Başarı mesajını kontrol edin).
-     6. Oturumun kapatıldığını doğrulamak için "Logout" yapın.
+         Scenario 2: "auth" Group – Login
+         1. Go to the homepage and click "My Account" → "Login".
+         2. Login using the credentials created during registration.
+         3. Verify that login was successful (check for presence of the Logout link).
 
-     Senaryo 2: auth Grubu (Login İşlemi)
-
-     1. Anasayfaya gidin ve "My Account" menüsüne tıklayıp "Login" bağlantısına tıklayın.
-     2. Kayıt sırasında oluşturduğunuz email ve şifre ile giriş yapın.
-     3. Giriş işleminin başarılı olduğunu doğrulayın (Logout bağlantısının göründüğünü kontrol edin).
-
-     Senaryo 3: accountOperations Grubu (Hesap Güncelleme ve Çıkış İşlemi)
-
-     1. Hesap bilgilerini güncelleyin (First Name'i "UpdatedName" olarak değiştirin).
-     2. Hesap bilgilerini güncelledikten sonra başarılı olduğunu doğrulayın.
-     3. Çıkış işlemi yaparak oturumun kapatıldığını doğrulayın.
+         Scenario 3: "accountOperations" Group – Update Account and Logout
+         1. Update the account information (change First Name to "UpdatedName").
+         2. Verify that the update was successful.
+         3. Logout and confirm that the session has ended.
      */
 
-    // Random objesi
     Random random = new Random();
 
-    // Rastgele email ve şifre oluşturma
+    // Generate random email and password for user registration
     String generatedEmail = "user_" + random.nextInt(10000) + "@testmail.com";
     String generatedPassword = "password" + random.nextInt(10000);
 
     @Test(groups = "auth")
     public void registerTest() {
-        // Anasayfaya gidin
         driver.get("http://tutorialsninja.com/demo/");
 
-        // "My Account" -> "Register" menüsüne tıklayın
+        // Open "My Account" → "Register"
         WebElement myAccountMenu = driver.findElement(By.xpath("//span[text()='My Account']"));
         myAccountMenu.click();
 
         WebElement registerLink = driver.findElement(By.linkText("Register"));
         registerLink.click();
 
-        // Kayıt formunu doldurun
-        WebElement firstNameInput = driver.findElement(By.id("input-firstname"));
-        firstNameInput.sendKeys("Kerem");
+        // Fill out the registration form
+        driver.findElement(By.id("input-firstname")).sendKeys("Kerem");
+        driver.findElement(By.id("input-lastname")).sendKeys("Mert");
+        driver.findElement(By.id("input-email")).sendKeys(generatedEmail);
+        driver.findElement(By.id("input-telephone")).sendKeys("15551234567");
+        driver.findElement(By.id("input-password")).sendKeys(generatedPassword);
+        driver.findElement(By.id("input-confirm")).sendKeys(generatedPassword);
+        driver.findElement(By.name("agree")).click();
 
-        WebElement lastNameInput = driver.findElement(By.id("input-lastname"));
-        lastNameInput.sendKeys("Mert");
+        driver.findElement(By.cssSelector("input.btn.btn-primary")).click();
 
-        WebElement emailInput = driver.findElement(By.id("input-email"));
-        emailInput.sendKeys(generatedEmail);
-
-        WebElement telephoneInput = driver.findElement(By.id("input-telephone"));
-        telephoneInput.sendKeys("15551234567");
-
-        WebElement passwordInput = driver.findElement(By.id("input-password"));
-        passwordInput.sendKeys(generatedPassword);
-
-        WebElement confirmPasswordInput = driver.findElement(By.id("input-confirm"));
-        confirmPasswordInput.sendKeys(generatedPassword);
-
-        WebElement privacyPolicyCheckbox = driver.findElement(By.name("agree"));
-        privacyPolicyCheckbox.click();
-        WebElement continueButton = driver.findElement(By.cssSelector("input.btn.btn-primary"));
-        continueButton.click();
-
-        // Kayıt işleminin başarılı olduğunu doğrulayın
+        // Verify registration success
         wait.until(ExpectedConditions.titleIs("Your Account Has Been Created!"));
         WebElement successMessage = driver.findElement(By.cssSelector("div#content h1"));
-        Assert.assertTrue(successMessage.getText().contains("Your Account Has Been Created!"), "Kayıt işlemi başarısız oldu!");
+        Assert.assertTrue(successMessage.getText().contains("Your Account Has Been Created!"), "Registration failed!");
 
-        // Logout yapın
-        WebElement myAccountDropdown = driver.findElement(By.xpath("//span[text()='My Account']"));
-        myAccountDropdown.click();
-        WebElement logoutLink = driver.findElement(By.linkText("Logout"));
-        logoutLink.click();
+        // Logout after registration
+        driver.findElement(By.xpath("//span[text()='My Account']")).click();
+        driver.findElement(By.linkText("Logout")).click();
     }
 
     @Test(dependsOnMethods = "registerTest", groups = "auth")
     public void loginTest() {
-        // Anasayfaya gidin
         driver.get("http://tutorialsninja.com/demo/");
 
-        // "My Account" -> "Login" menüsüne tıklayın
+        // Open "My Account" → "Login"
         WebElement myAccountMenu = driver.findElement(By.xpath("//span[text()='My Account']"));
         myAccountMenu.click();
+
         WebElement loginLink = driver.findElement(By.linkText("Login"));
         loginLink.click();
 
-        // Kayıt sırasında oluşturduğunuz email ve şifre ile giriş yapın
-        WebElement emailInput = driver.findElement(By.id("input-email"));
-        emailInput.sendKeys(generatedEmail);
+        // Login with previously created credentials
+        driver.findElement(By.id("input-email")).sendKeys(generatedEmail);
+        driver.findElement(By.id("input-password")).sendKeys(generatedPassword);
+        driver.findElement(By.cssSelector("input.btn.btn-primary")).click();
 
-        WebElement passwordInput = driver.findElement(By.id("input-password"));
-        passwordInput.sendKeys(generatedPassword);
-
-        WebElement loginButton = driver.findElement(By.cssSelector("input.btn.btn-primary"));
-        loginButton.click();
-
-        // Giriş yapıldığını doğrulayın
+        // Verify login success by checking for Logout link
         wait.until(ExpectedConditions.titleIs("My Account"));
         WebElement logoutText = driver.findElement(By.xpath("//*[@id='column-right']/div/a[13]"));
-        Assert.assertEquals(logoutText.getText(), "Logout", "Login işlemi başarısız oldu!");
+        Assert.assertEquals(logoutText.getText(), "Logout", "Login failed!");
     }
 
     @Test(dependsOnGroups = "auth", groups = "accountOperations")
     public void updateAccountTest() {
-        // Hesap bilgilerini güncelleyin
+        // Open Edit Account page
         WebElement accountDetailsLink = driver.findElement(By.linkText("Edit Account"));
         accountDetailsLink.click();
 
+        // Update first name
         WebElement firstNameInput = driver.findElement(By.id("input-firstname"));
         firstNameInput.clear();
         firstNameInput.sendKeys("UpdatedName");
 
-        WebElement continueButton = driver.findElement(By.cssSelector("input.btn.btn-primary"));
-        continueButton.click();
+        driver.findElement(By.cssSelector("input.btn.btn-primary")).click();
 
+        // Verify account update success message
         WebElement successMessage = driver.findElement(By.cssSelector("div.alert.alert-success"));
         Assert.assertTrue(successMessage.getText().contains("Your account has been successfully updated."));
     }
 
     @Test(dependsOnMethods = "updateAccountTest", groups = "accountOperations")
     public void logoutTest() {
-        // Çıkış işlemini yapın
+        // Open "My Account" → Logout
         WebElement myAccountMenu = driver.findElement(By.xpath("//span[text()='My Account']"));
         myAccountMenu.click();
 
         WebElement logoutLink = driver.findElement(By.linkText("Logout"));
         logoutLink.click();
 
+        // Verify successful logout
         WebElement logoutMessage = driver.findElement(By.cssSelector("div#content h1"));
         Assert.assertTrue(logoutMessage.getText().contains("Account Logout"));
     }
