@@ -12,110 +12,90 @@ import java.util.Random;
 public class TutorialsNinjaMethodDependencyTest extends BaseDriver {
 
     /**
-     Task: Kullanıcı Kayıt ve Login İşlemi (Yöntem Bağımlılığı)
+         Task: User Registration and Login (Method Dependency)
 
-     Senaryo 1: Kullanıcı Kayıt İşlemi
+         Scenario 1: User Registration
+         1. Navigate to the homepage: http://tutorialsninja.com/demo/
+         2. Click the "My Account" menu.
+         3. Select the "Register" link from the dropdown menu.
+         4. Fill in the registration form with:
+            - First Name, Last Name, Email, Telephone, Password, Confirm Password
+         5. Check the "Privacy Policy" box and click the "Continue" button.
+         6. Verify that registration is successful (check success message).
+         7. Perform logout to end the session.
 
-     1. Anasayfaya gidin: http://tutorialsninja.com/demo/
-     2. "My Account" menüsüne tıklayın.
-     3. Açılan menüden "Register" bağlantısına tıklayın.
-     4. Kayıt formunda şu alanları doldurun:
-     - First Name, Last Name, Email, Telephone, Password, Confirm Password
-     5. "Privacy Policy" kutucuğunu işaretleyin ve "Continue" butonuna tıklayın.
-     6. Kayıt işleminin başarılı olduğunu doğrulayın (Başarı mesajını kontrol edin).
-     7. "Logout" yaparak oturumu kapatın.
-
-     Senaryo 2: Kullanıcı Giriş İşlemi
-
-     1. Anasayfaya geri dönün.
-     2. "My Account" menüsüne tıklayın ve "Login" bağlantısına tıklayın.
-     3. Kayıt sırasında kullandığınız email ve şifre ile giriş yapın.
-     4. Giriş işleminin başarılı olduğunu doğrulayın (Logout butonunun görünür olduğunu kontrol edin).
+         Scenario 2: User Login
+         1. Go back to the homepage.
+         2. Click "My Account" → "Login".
+         3. Log in using the email and password used during registration.
+         4. Verify that login was successful (check if "Logout" link is visible).
      */
 
-    // Random objesi
     Random random = new Random();
 
-    // Rastgele email ve şifre oluşturma
+    // Generate a random email and password for registration
     String generatedEmail = "user_" + random.nextInt(10000) + "@testmail.com";
     String generatedPassword = "password" + random.nextInt(10000);
 
     @Test
     public void registerTest() {
-        // 1. Anasayfaya gidin
+        // Step 1: Go to homepage
         driver.get("http://tutorialsninja.com/demo/");
 
-        // 2. "My Account" -> "Register" menüsüne tıklayın
+        // Step 2: Click "My Account" → "Register"
         WebElement myAccountMenu = driver.findElement(By.xpath("//span[text()='My Account']"));
         myAccountMenu.click();
 
         WebElement registerLink = driver.findElement(By.linkText("Register"));
         registerLink.click();
 
-        // 4. Kayıt formunu doldurun
-        WebElement firstNameInput = driver.findElement(By.id("input-firstname"));
-        firstNameInput.sendKeys("Kerem");
+        // Step 4: Fill in registration form
+        driver.findElement(By.id("input-firstname")).sendKeys("Kerem");
+        driver.findElement(By.id("input-lastname")).sendKeys("Mert");
+        driver.findElement(By.id("input-email")).sendKeys(generatedEmail);
+        driver.findElement(By.id("input-telephone")).sendKeys("15551234567");
+        driver.findElement(By.id("input-password")).sendKeys(generatedPassword);
+        driver.findElement(By.id("input-confirm")).sendKeys(generatedPassword);
 
-        WebElement lastNameInput = driver.findElement(By.id("input-lastname"));
-        lastNameInput.sendKeys("Mert");
+        // Step 5: Accept privacy policy and submit form
+        driver.findElement(By.name("agree")).click();
+        driver.findElement(By.cssSelector("input.btn.btn-primary")).click();
 
-        WebElement emailInput = driver.findElement(By.id("input-email"));
-        emailInput.sendKeys(generatedEmail);
-
-        WebElement telephoneInput = driver.findElement(By.id("input-telephone"));
-        telephoneInput.sendKeys("15551234567");
-
-        WebElement passwordInput = driver.findElement(By.id("input-password"));
-        passwordInput.sendKeys(generatedPassword);
-
-        WebElement confirmPasswordInput = driver.findElement(By.id("input-confirm"));
-        confirmPasswordInput.sendKeys(generatedPassword);
-
-        // 5. "Privacy Policy" kutucuğunu işaretleyin ve "Continue" butonuna tıklayın
-        WebElement privacyPolicyCheckbox = driver.findElement(By.name("agree"));
-        privacyPolicyCheckbox.click();
-
-        WebElement continueButton = driver.findElement(By.cssSelector("input.btn.btn-primary"));
-        continueButton.click();
-
-        // 6. Kayıt işleminin başarılı olduğunu doğrulayın
+        // Step 6: Verify successful registration
         wait.until(ExpectedConditions.titleIs("Your Account Has Been Created!"));
         WebElement successMessage = driver.findElement(By.cssSelector("div#content h1"));
-        Assert.assertTrue(successMessage.getText().contains("Your Account Has Been Created!"), "Kayıt işlemi başarısız oldu!");
+        Assert.assertTrue(successMessage.getText().contains("Your Account Has Been Created!"),
+                "Registration failed!");
 
-        // 7. "Logout" yaparak oturumu kapatın
-        WebElement myAccountDropdown = driver.findElement(By.xpath("//span[text()='My Account']"));
-        myAccountDropdown.click();
-
-        WebElement logoutLink = driver.findElement(By.linkText("Logout"));
-        logoutLink.click();
+        // Step 7: Log out
+        driver.findElement(By.xpath("//span[text()='My Account']")).click();
+        driver.findElement(By.linkText("Logout")).click();
     }
 
+    /**
+     * This method depends on successful user registration.
+     * It runs only if "registerTest" completes without errors.
+     */
     @Test(dependsOnMethods = "registerTest")
     public void loginTest() {
-        // 1. Anasayfaya geri dönün
+        // Step 1: Go back to homepage
         driver.get("http://tutorialsninja.com/demo/");
 
-        // 2. "My Account" -> "Login" menüsüne tıklayın
+        // Step 2: Click "My Account" → "Login"
         WebElement myAccountMenu = driver.findElement(By.xpath("//span[text()='My Account']"));
         myAccountMenu.click();
 
         WebElement loginLink = driver.findElement(By.linkText("Login"));
         loginLink.click();
 
-        // 3. Kayıt sırasında kullandığınız email ve şifre ile giriş yapın
-        WebElement emailInput = driver.findElement(By.id("input-email"));
-        emailInput.sendKeys(generatedEmail);
+        // Step 3: Enter email and password used during registration
+        driver.findElement(By.id("input-email")).sendKeys(generatedEmail);
+        driver.findElement(By.id("input-password")).sendKeys(generatedPassword);
+        driver.findElement(By.cssSelector("input.btn.btn-primary")).click();
 
-        WebElement passwordInput = driver.findElement(By.id("input-password"));
-        passwordInput.sendKeys(generatedPassword);
-
-        WebElement loginButton = driver.findElement(By.cssSelector("input.btn.btn-primary"));
-        loginButton.click();
-
-        // 4. Giriş işleminin başarılı olduğunu doğrulayın
+        // Step 4: Verify login success
         wait.until(ExpectedConditions.titleIs("My Account"));
         WebElement logoutText = driver.findElement(By.xpath("//*[@id='column-right']/div/a[13]"));
-        Assert.assertEquals(logoutText.getText(), "Logout", "Login işlemi başarısız oldu!");
+        Assert.assertEquals(logoutText.getText(), "Logout", "Login failed!");
     }
 }
