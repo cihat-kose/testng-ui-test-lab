@@ -11,82 +11,72 @@ import utility.BaseDriver;
 public class EcommerceRegisterTest extends BaseDriver {
 
     /**
-     Task:
-     Kullanıcı Kayıt İşlemi
+         Task: User Registration with XML Parameters
 
-     1. Anasayfaya gidin: http://tutorialsninja.com/demo/
-     2. "My Account" menüsüne tıklayın ve "Register" bağlantısına tıklayın.
-     3. Kayıt formunda gerekli alanları doldurun (First Name, Last Name, Telephone vb.).
-     4. Email alanı dinamik olarak oluşturulacaktır ve Password XML'den parametre olarak alınacaktır.
-     5. "First Name", "Last Name", "Telephone" ve "Password" alanlarına XML'den gelen değerler girilecektir.
-     6. "Privacy Policy" kutucuğunu işaretleyin ve "Continue" butonuna tıklayın.
-     7. Kayıt işleminin başarılı olduğunu doğrulayın:
-     Sayfada "Your Account Has Been Created!" mesajını görmelisiniz.
-     8. "Logout" yaparak oturumu kapatın.
+         Scenario:
+         1. Navigate to: http://tutorialsninja.com/demo/
+         2. Click on "My Account" and then "Register".
+         3. Fill in the registration form:
+            - First Name, Last Name, Telephone are received via XML parameters.
+            - Email is dynamically generated to ensure uniqueness.
+            - Password is also received via XML.
+         4. Accept the Privacy Policy and click "Continue".
+         5. Verify successful registration by asserting the message: "Your Account Has Been Created!"
+         6. Log out of the account.
 
-     Test, aşağıdaki parametreleri XML'den alacaktır:
-     - firstName: Kayıt formunda kullanıcının ismi.
-     - lastName: Kayıt formunda kullanıcının soyismi.
-     - telephone: Kayıt formunda kullanıcının telefon numarası.
-     - password: Kayıt formunda kullanıcının şifresi.
+         Parameters:
+         - firstName: User's first name (from XML)
+         - lastName: User's last name (from XML)
+         - telephone: User's phone number (from XML)
+         - password: Password (from XML)
      */
 
-    // Dinamik email, login testi için kullanılacak. Dinamik email oluşturma sebebimiz,
-    // aynı email ile birden fazla kez kayıt yapmaya çalışıldığında hata alma durumunu ortadan kaldırmaktır.
     public static String dynamicEmail;
 
     @Test
     @Parameters({"firstName", "lastName", "telephone", "password"})
     public void registerTest(String firstName, String lastName, String telephone, String password) {
-        // Test başladığında anasayfaya gidin
         driver.get("http://tutorialsninja.com/demo/");
 
-        // Dinamik email oluşturma: Aynı email ile birden fazla kez kayıt yapılmasını engellemek için
         dynamicEmail = "testuser_" + System.currentTimeMillis() + "@example.com";
 
-        // "My Account" -> "Register" menüsüne tıklayın
-        WebElement myAccountMenu = driver.findElement(By.xpath("//span[text()='My Account']"));
+        WebElement myAccountMenu = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[text()='My Account']")));
         myAccountMenu.click();
 
-        WebElement registerLink = driver.findElement(By.linkText("Register"));
+        WebElement registerLink = wait.until(ExpectedConditions.elementToBeClickable(By.linkText("Register")));
         registerLink.click();
 
-        // Kayıt formunda gerekli alanları doldurun
-        WebElement firstNameInput = driver.findElement(By.id("input-firstname"));
-        firstNameInput.sendKeys(firstName);  // XML'den alınan firstName
+        WebElement firstNameInput = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("input-firstname")));
+        firstNameInput.sendKeys(firstName);
 
         WebElement lastNameInput = driver.findElement(By.id("input-lastname"));
-        lastNameInput.sendKeys(lastName);  // XML'den alınan lastName
+        lastNameInput.sendKeys(lastName);
 
         WebElement emailInput = driver.findElement(By.id("input-email"));
-        emailInput.sendKeys(dynamicEmail);  // Dinamik olarak oluşturulan email
+        emailInput.sendKeys(dynamicEmail);
 
         WebElement telephoneInput = driver.findElement(By.id("input-telephone"));
-        telephoneInput.sendKeys(telephone);  // XML'den alınan telefon numarası
+        telephoneInput.sendKeys(telephone);
 
         WebElement passwordInput = driver.findElement(By.id("input-password"));
-        passwordInput.sendKeys(password);  // XML'den alınan password
+        passwordInput.sendKeys(password);
 
         WebElement confirmPasswordInput = driver.findElement(By.id("input-confirm"));
-        confirmPasswordInput.sendKeys(password);  // Password doğrulama
+        confirmPasswordInput.sendKeys(password);
 
-        // "Privacy Policy" kutucuğunu işaretleyin ve "Continue" butonuna tıklayın
         WebElement privacyPolicyCheckbox = driver.findElement(By.name("agree"));
         privacyPolicyCheckbox.click();
 
         WebElement continueButton = driver.findElement(By.cssSelector("input.btn.btn-primary"));
         continueButton.click();
 
-        // Kayıt işleminin başarılı olduğunu doğrulayın
-        wait.until(ExpectedConditions.titleIs("Your Account Has Been Created!"));
-        WebElement successMessage = driver.findElement(By.cssSelector("div#content h1"));
-        Assert.assertTrue(successMessage.getText().contains("Your Account Has Been Created!"), "Kayıt işlemi başarısız oldu!");
+        WebElement successMessage = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div#content h1")));
+        Assert.assertTrue(successMessage.getText().contains("Your Account Has Been Created!"), "Registration failed!");
 
-        // "Logout" yaparak oturumu kapatın
-        WebElement myAccountDropdown = driver.findElement(By.xpath("//span[text()='My Account']"));
+        WebElement myAccountDropdown = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[text()='My Account']")));
         myAccountDropdown.click();
 
-        WebElement logoutLink = driver.findElement(By.linkText("Logout"));
+        WebElement logoutLink = wait.until(ExpectedConditions.elementToBeClickable(By.linkText("Logout")));
         logoutLink.click();
     }
 }

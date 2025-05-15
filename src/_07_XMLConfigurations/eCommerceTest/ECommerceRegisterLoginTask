@@ -1,32 +1,32 @@
-
 Tasks:
-XML Parametreleri ile E-ticaret Giriş ve Kayıt Testleri
+E-commerce Registration and Login Tests Using XML Parameters
 
-Scenario 1: E-ticaret Kayıt Testi
+Scenario 1: E-commerce Registration Test
 
-1. Anasayfaya gidin: http://tutorialsninja.com/demo/
-2. "My Account" menüsüne tıklayın ve "Register" bağlantısına tıklayın.
-3. Kayıt formunda gerekli alanları doldurun:
-   - First Name, Last Name, Telephone gibi alanlar XML'den parametre olarak alınacak.
-4. Email alanı dinamik olarak oluşturulacaktır ve Password XML'den parametre olarak alınacaktır.
-5. "Privacy Policy" kutucuğunu işaretleyin ve "Continue" butonuna tıklayın.
-6. Kayıt işleminin başarılı olduğunu doğrulayın: Sayfada "Your Account Has Been Created!" mesajını görmelisiniz.
-7. "Logout" yaparak oturumu kapatın.
+1. Navigate to the homepage: http://tutorialsninja.com/demo/
+2. Click on the "My Account" menu and select the "Register" option.
+3. Fill in the registration form:
+   - The fields First Name, Last Name, and Telephone will be provided via XML parameters.
+4. The Email field will be generated dynamically to ensure uniqueness.
+   The Password will also be passed from the XML configuration.
+5. Check the "Privacy Policy" checkbox and click the "Continue" button.
+6. Verify that registration was successful by confirming the presence of the message:
+   "Your Account Has Been Created!"
+7. Log out of the account to end the session.
 
-Parametreler:
-- firstName: Kayıt formunda kullanıcının ismi (XML'den alınacak).
-- lastName: Kayıt formunda kullanıcının soyismi (XML'den alınacak).
-- telephone: Kayıt formunda kullanıcının telefon numarası (XML'den alınacak).
-- password: Kayıt formunda kullanıcının şifresi (XML'den alınacak).
+XML Parameters for Registration:
+- firstName: User’s first name (from XML)
+- lastName: User’s last name (from XML)
+- telephone: User’s phone number (from XML)
+- password: Password to be used (from XML)
 
+Scenario 2: E-commerce Login Test
 
-Scenario 2: E-ticaret Giriş Testi
+1. Navigate to the homepage and click on "My Account", then select "Login".
+2. Fill in the login form:
+   - Email will be retrieved from the dynamic value generated during registration.
+   - Password will be provided through the XML configuration (e.g. TestPassword123).
+3. Verify that login was successful by checking that the "Logout" link is visible.
 
-1. Anasayfaya gidin ve "My Account" menüsüne tıklayıp "Login" bağlantısına tıklayın.
-2. Email ve Password alanlarını doldurun:
-   - Email: RegisterTest sınıfında dinamik olarak oluşturulan email kullanılacak.
-   - Password: XML'den parametre olarak alınacak (TestPassword123).
-3. Giriş işleminin başarılı olduğunu doğrulayın: Sayfada "Logout" bağlantısının göründüğünü kontrol edin.
-
-Parametreler:
-- password: Giriş formunda kullanılacak şifre (XML'den alınacak).
+XML Parameter for Login:
+- password: Password used to log in (from XML)

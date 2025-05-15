@@ -1,0 +1,12 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="DuckDuckGo Search Test Suite" parallel="false">
+    <test name="DuckDuckGo Search Test">
+        <parameter name="url" value="https://www.duckduckgo.com"/>
+        <parameter name="searchTerm" value="TestNG XML Configuration"/>
+
+        <classes>
+            <class name="_07_XMLConfigurations.duckduckgoTest.DuckDuckGoSearchTest"/>
+        </classes>
+    </test>
+</suite>
