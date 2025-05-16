@@ -1,43 +1,42 @@
-
-Konu: TestNG Groups
+Topic: TestNG Groups
 
 Summary:
 
-TestNG Groups, testleri belirli kategorilere ayırarak, yalnızca belirli grupları çalıştırmayı sağlar.
-Testleri gruplamak, büyük projelerde test yönetimini kolaylaştırır ve belirli senaryolara odaklanmayı mümkün kılar.
+TestNG Groups allow you to categorize test methods, enabling selective execution of specific sets of tests.
+Grouping tests helps manage large-scale projects and focus on relevant scenarios more efficiently.
 
-TestNG Groups ile yapılan işlemler:
+Operations with TestNG Groups:
 
-1. Grup Tanımlama:
-   - Testler @Test(groups = {"groupName"}) kullanılarak belirli gruplara atanabilir.
-   - Örneğin:
+1. Group Definition:
+   - Assign tests to one or more groups using @Test(groups = {"groupName"}).
+   - Example:
      @Test(groups = {"smoke"})
      public void smokeTest() {
-         // Smoke testi
+         // Smoke test logic
      }
 
-2. Grupları XML Dosyası Üzerinden Çalıştırma:
-   - XML dosyasındaki <groups> etiketi kullanılarak sadece belirli grupların çalıştırılması sağlanabilir.
-   - Örneğin:
+2. Executing Groups via XML:
+   - Use the <groups> tag in testng.xml to include only specific groups for execution.
+   - Example:
      <groups>
          <run>
              <include name="regression"/>
          </run>
      </groups>
 
-3. Grup Bağımlılıkları:
-   - Testler gruplara göre bağımlı olarak çalıştırılabilir. Bir grup testi tamamlanmadan diğer grup çalıştırılmayabilir.
-   - dependsOnGroups özelliği ile gruplar arası bağımlılıklar tanımlanabilir.
-   - Örneğin:
+3. Group Dependencies:
+   - Use dependsOnGroups to define that a test should only run after another group has completed.
+   - Example:
      @Test(groups = {"login"}, dependsOnGroups = {"register"})
      public void loginTest() {
-         // Giriş testi, önce kayıt grubuna bağlı
+         // Login test depends on register group
      }
 
-4. Belirli Test Setlerini Çalıştırma:
-   - Büyük test projelerinde sadece belirli bir grup (örneğin, "smoke" veya "regression") testlerinin çalıştırılması mümkündür.
-   - Gruplar sayesinde, gereksiz tüm testler atlanır ve sadece hedeflenen senaryolar çalıştırılır.
+4. Running Specific Test Sets:
+   - Useful in large projects to run only "smoke", "regression", etc.
+   - This approach avoids unnecessary executions and speeds up feedback cycles.
 
-Sonuç:
-TestNG Groups, testleri kategorilere ayırarak test süreçlerini optimize eder.
-Gruplar ve grup bağımlılıkları ile farklı test setleri üzerinde esnek çalışma imkanı sunar.
+Conclusion:
+
+TestNG Groups provide a powerful way to organize and optimize test execution.
+With grouping and dependencies, teams can flexibly run different layers of tests as needed.

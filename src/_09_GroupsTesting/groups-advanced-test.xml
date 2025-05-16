@@ -1,7 +1,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
 <suite name="Advanced Group Test Suite" parallel="methods" thread-count="3">
-    <!-- Sadece sanity grubundaki testleri çalıştır -->
+    <!-- Run only sanity group -->
     <test name="Sanity Test">
         <groups>
             <run>
@@ -13,7 +13,7 @@
         </classes>
     </test>
 
-    <!-- Regression grubundaki testler çalıştırılır ve sanity grubuna bağlıdır -->
+    <!-- Run regression group tests (depends on sanity) -->
     <test name="Regression Test">
         <groups>
             <run>
@@ -26,7 +26,7 @@
         </classes>
     </test>
 
-    <!-- Functional testler -->
+    <!-- Run functional group tests -->
     <test name="Functional Test">
         <groups>
             <run>
@@ -37,5 +37,4 @@
             <class name="_09_GroupsTesting.AdvancedGroupsTest"/>
         </classes>
     </test>
-
 </suite>
