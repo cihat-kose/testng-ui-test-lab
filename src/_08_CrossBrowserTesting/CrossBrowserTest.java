@@ -7,43 +7,38 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import utility.BaseDriverParameter;
 
-import java.util.List;
-
 public class CrossBrowserTest extends BaseDriverParameter {
 
     /**
-        Task: Cross Browser Testing - Google Arama Testi
+         Task: Cross Browser Testing - DuckDuckGo Search Test
 
-        1. Google'ın anasayfasına gidin.
-        2. Çerez izni penceresindeki "Tümünü reddet" butonunu bulun ve tıklayın (varsa).
-        3. Google başlığını doğrulayın.
-        4. Arama kutusuna "Cross Browser Testing" yazın ve arama yapın.
-        5. Arama sonuçlarının yüklendiğini doğrulayın.
+         Steps:
+         1. Navigate to DuckDuckGo homepage.
+         2. Verify that the page title contains "DuckDuckGo".
+         3. Type "Cross Browser Testing" into the search box and submit.
+         4. Verify that the search results are displayed.
+
+         This test is designed to run across multiple browsers (e.g., Chrome, Firefox, Edge)
+         using a parameterized driver setup inherited from BaseDriverParameter.
      */
 
     @Test
     public void crossBrowserTest() {
-        // 1. Google'a gidin
-        driver.get("https://www.google.com");
+        // Step 1: Navigate to DuckDuckGo
+        driver.get("https://www.duckduckgo.com");
 
-        // 2. Çerez izni penceresindeki "Tümünü reddet" butonunu bulun ve tıklayın (çıkarsa)
-        // Google çerez izinlerini kabul etmeyi ya da reddetmeyi isteyebilir.
-        List<WebElement> rejectAll = driver.findElements(By.xpath("//button[@id='W0wltc']/div"));
-        if (!rejectAll.isEmpty()) {
-            rejectAll.get(0).click();
-        }
+        // Step 2: Verify page title contains "DuckDuckGo"
+        String actualTitle = driver.getTitle();
+        Assert.assertTrue(actualTitle.contains("DuckDuckGo"), "Page title does not contain 'DuckDuckGo'!");
 
-        // 3. Google başlığını doğrulayın
-        String expectedTitle = "Google";
-        Assert.assertEquals(driver.getTitle(), expectedTitle, "Başlık doğrulaması başarısız oldu!");
-
-        // 4. Arama kutusuna bir şeyler yazın ve doğrulayın
-        WebElement searchInput = driver.findElement(By.name("q"));
+        // Step 3: Perform search
+        WebElement searchInput = wait.until(ExpectedConditions.elementToBeClickable(By.name("q")));
         searchInput.sendKeys("Cross Browser Testing");
         searchInput.submit();
 
-        // 5. Arama sonuç sayfasının yüklendiğini doğrulayın
-        WebElement searchResult = wait.until(ExpectedConditions.presenceOfElementLocated(By.id("search")));
-        Assert.assertTrue(searchResult.isDisplayed(), "Arama sonucu sayfası görünmedi!");
+        // Step 4: Verify search results are displayed
+        WebElement resultsContainer = wait.until(ExpectedConditions.presenceOfElementLocated(
+                By.cssSelector(".react-results--main")));
+        Assert.assertTrue(resultsContainer.isDisplayed(), "Search results are not visible!");
     }
 }

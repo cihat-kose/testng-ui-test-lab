@@ -1,31 +1,31 @@
-Konu: Cross Browser Testing
+Subject: Cross Browser Testing
 
 Summary:
 
-Cross Browser Testing, web uygulamalarının farklı tarayıcılarda doğru çalıştığını doğrulamak için yapılan test sürecidir.
-Selenium WebDriver ile birlikte TestNG kullanarak, aynı test senaryoları farklı tarayıcılar üzerinde çalıştırılabilir.
+Cross Browser Testing is the process of verifying that a web application works correctly across different web browsers.
+By using Selenium WebDriver together with TestNG, the same test scenarios can be executed on multiple browsers.
 
-Cross Browser Testing ile yapılan işlemler:
+Key activities in Cross Browser Testing:
 
-1. Birden Fazla Tarayıcıda Test Çalıştırma:
-   - Aynı testi farklı tarayıcılar üzerinde çalıştırarak uygulamanın tarayıcı uyumluluğunu doğrulamak.
-   - Örneğin, Chrome, Firefox, Safari gibi tarayıcıları aynı senaryoda test etmek.
+1. Running Tests on Multiple Browsers:
+   - Execute the same tests on different browsers to verify browser compatibility of the application.
+   - For example, running the same scenario on Chrome, Firefox, Safari, etc.
 
-2. Tarayıcı Parametrelerini XML Üzerinden Yönetme:
-   - XML dosyasında tarayıcı parametreleri tanımlanarak hangi tarayıcıda test çalıştırılacağı belirlenir.
-   - Örneğin:
+2. Managing Browser Parameters via XML:
+   - Browser types can be defined in the XML configuration file, allowing control over which browser the test should run on.
+   - Example:
      <parameter name="browser" value="chrome"/>
 
-3. Tarayıcı Bağımsız Testler:
-   - Testler, tarayıcıdan bağımsız hale getirilerek aynı kod, farklı tarayıcılarda çalıştırılabilir.
-   - WebDriver kullanılarak, testlerin farklı tarayıcı sürümlerinde aynı şekilde çalıştığından emin olunur.
+3. Browser-Independent Tests:
+   - Tests can be designed to be browser-agnostic, so that the same code can run on different browser drivers.
+   - By utilizing WebDriver, consistency across browser versions is ensured.
 
-Cross Browser Testing için kullanılan tarayıcılar:
+Supported Browsers for Cross Browser Testing:
 - Chrome
 - Firefox
 - Edge
 - Safari
 
-Sonuç:
-Cross Browser Testing, web uygulamalarının tüm tarayıcılar üzerinde tutarlı çalıştığını garanti etmek için kullanılır.
-Tarayıcı parametreleri XML üzerinden yönetilerek aynı testler farklı tarayıcılarda otomatik olarak çalıştırılabilir.
+Conclusion:
+Cross Browser Testing ensures that web applications behave consistently across all supported browsers.
+By managing browser parameters through XML, the same tests can be automatically executed across different environments.

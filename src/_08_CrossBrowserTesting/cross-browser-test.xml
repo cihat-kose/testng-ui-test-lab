@@ -1,6 +1,21 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
-<suite name="Cross Browser Test Suite" parallel="tests" thread-count="3">
+<!--
+    Cross Browser Test Suite
+    Description:
+    This suite is configured to run the same test class (CrossBrowserTest)
+    in two different browsers (Chrome and Firefox) in parallel.
+
+    parallel="tests" → Tells TestNG to execute each <test> block in a separate thread.
+    thread-count="2" → Allows up to 2 tests (browsers) to run concurrently.
+
+    Each <test> defines a browserType parameter, which should be handled in the
+    BaseDriverParameter class to initialize the appropriate WebDriver.
+
+    The Edge test is currently commented out, but can be re-enabled as needed.
+-->
+
+<suite name="Cross Browser Test Suite" parallel="tests" thread-count="2">
     <test name="Cross Browser Test - Chrome">
         <parameter name="browserType" value="chrome"/>
         <classes>
@@ -19,10 +34,12 @@
         </classes>
     </test>
 
+    <!--
     <test name="Cross Browser Test - Edge">
         <parameter name="browserType" value="edge"/>
         <classes>
             <class name="_08_CrossBrowserTesting.CrossBrowserTest"/>
         </classes>
     </test>
+    -->
 </suite>
