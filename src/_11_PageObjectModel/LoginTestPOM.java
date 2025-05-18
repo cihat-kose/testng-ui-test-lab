@@ -9,39 +9,28 @@ import utility.BaseDriver;
 
 public class LoginTestPOM extends BaseDriver {
 
-    // Test senaryosunu yürütmek için kullanılacak test metodu
     @Test(dataProvider = "credentials")
-    public void loginTest(String username, String password){
+    public void loginTest(String username, String password) {
 
-        // LoginTest_Elements sınıfından bir örnek oluşturulur
         LoginTestElements loginTestElements = new LoginTestElements();
-
-        // Web sitesine gidilir
         driver.get("https://www.saucedemo.com/");
 
-        // Kullanıcı adı ve şifre alanları doldurulur
         loginTestElements.usernameInput.sendKeys(username);
         loginTestElements.passwordInput.sendKeys(password);
         loginTestElements.loginButton.click();
 
-        // Kullanıcı adı ve şifre doğruysa
         if (isUserValid(username) && password.equals("secret_sauce")) {
-            // Burger menüsüne tıklanır ve çıkış yapılır
             waitForElementVisible(loginTestElements.burgerMenu);
             loginTestElements.burgerMenu.click();
             loginTestElements.logout.click();
-        }
-        // Kullanıcı adı "locked_out_user" ve şifre "secret_sauce" ise
-        else if (username.equals("locked_out_user") && password.equals("secret_sauce")) {
+        } else if (username.equals("locked_out_user") && password.equals("secret_sauce")) {
             verifyErrorMessage(loginTestElements);
-        }
-        // Diğer durumlarda
-        else {
+        } else {
             verifyErrorMessage(loginTestElements);
         }
     }
 
-    // Kullanıcının geçerli olup olmadığını kontrol eden metot
+    // Helper method to check valid usernames
     private boolean isUserValid(String username) {
         return username.equals("standard_user") ||
                 username.equals("problem_user") ||
@@ -50,24 +39,23 @@ public class LoginTestPOM extends BaseDriver {
                 username.equals("visual_user");
     }
 
-    // Hata mesajını doğrulayan metot
+    // Helper method to verify error message appears
     private void verifyErrorMessage(LoginTestElements loginTestElements) {
         waitForElementVisible(loginTestElements.errorMessage);
-        Assert.assertTrue(loginTestElements.errorMessage.isDisplayed(), "Hata mesajı görüntülenmedi!");
+        Assert.assertTrue(loginTestElements.errorMessage.isDisplayed(), "Error message was not displayed!");
         loginTestElements.errorCloseButton.click();
         loginTestElements.usernameInput.clear();
         loginTestElements.passwordInput.clear();
     }
 
-    // WebElement görünür olana kadar bekleyen metot
+    // Waits for a WebElement to become visible
     private void waitForElementVisible(WebElement element) {
         wait.until(ExpectedConditions.visibilityOf(element));
     }
 
-    // Test senaryosunda kullanılacak verileri sağlayan veri sağlayıcısı
+    // Data provider for test credentials
     @DataProvider
     public Object[][] credentials() {
-        // Kullanıcı adı ve şifre kombinasyonlarını içeren bir dizi
         return new Object[][]{
                 {"standard_user", "secret_sauce"},
                 {"fake_user_01", "secret_sauce"},

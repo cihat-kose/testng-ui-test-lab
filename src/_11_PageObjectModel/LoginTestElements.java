@@ -7,42 +7,42 @@ import utility.BaseDriver;
 
 public class LoginTestElements {
 
-    // LoginTestElements constructor ile sayfadaki elementler initialize edilir.
+    // Constructor: Initializes the web elements for the current page
     public LoginTestElements() {
         PageFactory.initElements(BaseDriver.driver, this);
     }
 
-    // Kullanıcı adı alanı
+    // Username input field
     @FindBy(id = "user-name")
     public WebElement usernameInput;
 
-    // Şifre alanı
+    // Password input field
     @FindBy(id = "password")
     public WebElement passwordInput;
 
-    // Giriş butonu
+    // Login button
     @FindBy(id = "login-button")
     public WebElement loginButton;
 
-    // Menü butonu (Burger menü)
+    // Burger menu button
     @FindBy(id = "react-burger-menu-btn")
     public WebElement burgerMenu;
 
-    // Çıkış butonu
+    // Logout button
     @FindBy(id = "logout_sidebar_link")
     public WebElement logout;
 
-    // Hata mesajı
+    // Error message block
     @FindBy(xpath = "//h3[@data-test='error']")
     public WebElement errorMessage;
 
-    // Hata mesajı kapatma butonu
+    // Error close button (X icon)
     @FindBy(xpath = "//h3[@data-test='error']/button")
     public WebElement errorCloseButton;
 }
 
 /**
- * LoginTestElements sınıfı, sayfa üzerindeki tüm elementlerin yerini tutan yapıdır.
- * POM yaklaşımının bir parçası olarak, bu sınıf tüm locators'ı bir araya toplar ve testlerin okunabilirliğini artırır.
+     The LoginTestElements class is the structure that replaces all elements on the page.
+     As part of the POM approach, this class gathers all locators together and improves the readability of the tests.
  */
 

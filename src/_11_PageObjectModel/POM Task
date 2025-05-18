@@ -1,28 +1,22 @@
+Task: Login and Error Message Validation using POM
 
-   Task:
+1. Navigate to https://www.saucedemo.com/.
 
-   Kullanıcı Giriş ve Hata Mesajı Kontrolleri
+2. Perform login using the following valid usernames:
+   - standard_user
+   - locked_out_user
+   - problem_user
+   - performance_glitch_user
+   - error_user
+   - visual_user
 
-1. https://www.saucedemo.com/ sitesine gidin.
+   Password for all: "secret_sauce"
 
-2. Login işlemi gerçekleştirin:
-   - Sitede yer alan geçerli kullanıcı adı ve şifreler ile login işlemi gerçekleştirin:
-     Kullanıcı adları:
-     - standard_user
-     - locked_out_user
-     - problem_user
-     - performance_glitch_user
-     - error_user
-     - visual_user
+3. Validate error message:
+   - If login is attempted with invalid username or password, verify that the error message appears.
 
-   - Şifre: "secret_sauce" olacaktır.
+4. Validate locked-out user:
+   - If the credentials are correct but the user is locked (e.g., locked_out_user), validate that a proper warning appears.
 
-3. Hata mesajını doğrulayın:
-   - Geçerli olmayan kullanıcı adı ve şifre ile giriş yapılmaya çalışılırsa, hata mesajının göründüğünü doğrulayın.
-
-4. Kilitlenmiş kullanıcıyı doğrulayın:
-   - Geçerli şifre ve kullanıcı adı girildiğinde kullanıcının kilitlenmesi (locked_out_user) durumu varsa,
-     uyarı mesajının göründüğünü doğrulayın.
-
-5. Tek bir test metodu ile işlemleri yapın:
-   - Bu işlemleri tek bir test metodu kullanarak gerçekleştirin.
+5. Use a single test method:
+   - Implement all login and error validation scenarios using one test method with a data provider.
