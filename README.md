@@ -155,4 +155,4 @@ Contributions are welcome! Please follow these steps:
 ## 📜 License
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-For more information on how to get started, visit the [TestingPractices_TestNG_UI GitHub repository](https://github.com/ChatGTHB/TestingPractices_TestNG_UI).
+For more information on how to get started, visit the [TestNG UI Test Lab GitHub repository](https://github.com/cihat-kose/testng-ui-test-lab).
