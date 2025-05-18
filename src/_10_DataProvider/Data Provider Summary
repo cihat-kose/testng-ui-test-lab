@@ -1,21 +1,19 @@
-
-Konu: Data Providers ile Testler
+Topic: Testing with Data Providers
 
 Summary:
 
-TestNG'de "Data Provider", aynı testi birden fazla veri kümesi ile çalıştırmak için kullanılır.
-Bu özellik, aynı test metodunun farklı veri setleri ile tekrar tekrar çalıştırılmasını sağlar.
-Parametreli testlerin aksine, Data Providers ile her test çalışmasında dinamik olarak farklı veri kümesi kullanılabilir.
+In TestNG, a "Data Provider" is used to run the same test multiple times with different sets of input data.
+This feature allows parameterized execution of test methods with dynamic and flexible test data.
 
 Data Provider:
-- `@DataProvider` anotasyonu ile tanımlanır.
-- Farklı veri kümeleri sağlayarak aynı testi tekrar tekrar çalıştırır.
-- Her bir veri kümesi, bir test metoduna parametre olarak iletilir.
-- Test metodu, `@Test(dataProvider = "dataProviderName")` ile Data Provider'a bağlanır.
+- Defined using the @DataProvider annotation.
+- Runs the same test method repeatedly with different data sets.
+- Each data set is passed as parameters to the test method.
+- The test method is linked to the data provider via @Test(dataProvider = "dataProviderName").
 
-Kullanımı:
+Usage:
 
-1. @DataProvider ile birden fazla veri kümesi tanımlanır:
+1. Define multiple data sets with @DataProvider:
 
 @DataProvider(name = "loginCredentials")
 public Object[][] loginCredentials() {
@@ -26,17 +24,14 @@ public Object[][] loginCredentials() {
     };
 }
 
-2. @Test(dataProvider = "loginCredentials") ile veri sağlayıcısı belirtilir ve her veri seti ile test tekrar çalıştırılır:
+2. Use @Test(dataProvider = "loginCredentials") to execute the test with all data sets:
 
 @Test(dataProvider = "loginCredentials")
 public void loginTest(String username, String password) {
-    // Login işlemi yapılır
     System.out.println("Login Test for: " + username);
 }
 
-Bu örnek, aynı login testinin farklı kullanıcı adı ve şifrelerle nasıl çalıştırıldığını gösterir.
+This allows you to run the same login test using different usernames and passwords.
 
-Kısacası, Data Providers, testlerin veri tabanlı senaryolarla çalıştırılmasını sağlar
-ve testlerin farklı veri kümeleriyle tekrarlanmasını kolaylaştırır.
-Parametrelerden farklı olarak, test verisi dinamik ve esnek bir şekilde sağlanır.
-
+In summary, Data Providers enable data-driven testing and make it easier to repeat tests with different input values.
+Unlike @Parameters, the data is dynamically supplied from code, allowing for greater flexibility.

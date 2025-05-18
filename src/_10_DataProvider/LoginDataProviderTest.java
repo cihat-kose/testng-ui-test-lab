@@ -10,32 +10,31 @@ import utility.BaseDriver;
 public class LoginDataProviderTest extends BaseDriver {
 
     /**
-        Task:
-        Kullanıcı Login Testi (Data Provider)
+         Task:
+         Login Test using Data Provider
 
-        1) https://www.saucedemo.com/ sitesine gidiniz.
-        2) Sitede yer alan geçerli ve geçersiz kullanıcı adı ile login işlemini deneyiniz.
-           - Accepted usernames are:
-             - standard_user
-             - locked_out_user
-             - problem_user
-             - performance_glitch_user
-             - error_user
-             - visual_user
+         1) Navigate to https://www.saucedemo.com/.
+         2) Attempt to log in using valid and invalid usernames:
+            - Accepted usernames:
+              - standard_user
+              - locked_out_user
+              - problem_user
+              - performance_glitch_user
+              - error_user
+              - visual_user
+            - Password for all users: secret_sauce
 
-           Password for all users: secret_sauce
-
-        3) Geçersiz kullanıcı adı veya şifre ile giriş yapılmaya çalışıldığında hata mesajını doğrulayınız.
-        4) Geçerli kullanıcı adı ve şifre ile giriş yaptıktan sonra logout yapınız.
-        5) TestNG'deki DataProvider özelliğini kullanarak farklı kullanıcı adları ve şifrelerle bu işlemleri gerçekleştirin.
+         3) Verify error message for invalid credentials.
+         4) For valid login, verify success and perform logout.
+         5) Use TestNG DataProvider to supply multiple sets of credentials.
      */
 
     @Test(dataProvider = "loginCredentials")
     public void loginWithDataProvider(String username, String password) {
-        // 1) https://www.saucedemo.com/ sitesine gidiniz.
+        // Step 1: Navigate to the login page
         driver.get("https://www.saucedemo.com/");
 
-        // Kullanıcı adı ve şifre alanlarına veri giriyoruz.
+        // Step 2: Enter username and password
         WebElement usernameInput = driver.findElement(By.id("user-name"));
         usernameInput.sendKeys(username);
 
@@ -45,12 +44,12 @@ public class LoginDataProviderTest extends BaseDriver {
         WebElement loginButton = driver.findElement(By.id("login-button"));
         loginButton.click();
 
-        // 2) Geçerli kullanıcı adları ve şifre için başarılı giriş yapmayı kontrol ediyoruz.
+        // Step 3: Validate login scenarios
         if ((username.equals("standard_user") || username.equals("problem_user")
                 || username.equals("performance_glitch_user") || username.equals("error_user")
                 || username.equals("visual_user")) && password.equals("secret_sauce")) {
 
-            // Başarılı girişten sonra menüden logout yapıyoruz.
+            // Step 4: Successful login - perform logout
             WebElement burgerMenu = driver.findElement(By.id("react-burger-menu-btn"));
             burgerMenu.click();
 
@@ -58,7 +57,7 @@ public class LoginDataProviderTest extends BaseDriver {
             logout.click();
 
         } else if (username.equals("locked_out_user") && password.equals("secret_sauce")) {
-            // 4) Kilitlenmiş kullanıcı için hata mesajını kontrol ediyoruz.
+            // Step 5: Check error message for locked out user
             WebElement errorMessage = driver.findElement(By.xpath("//h3[@data-test='error']"));
             Assert.assertTrue(errorMessage.isDisplayed());
 
@@ -66,7 +65,7 @@ public class LoginDataProviderTest extends BaseDriver {
             errorCloseButton.click();
 
         } else {
-            // 3) Geçersiz kullanıcı veya şifre için hata mesajını doğruluyoruz.
+            // Step 6: Check error message for invalid credentials
             WebElement errorMessage = driver.findElement(By.xpath("//h3[@data-test='error']"));
             Assert.assertTrue(errorMessage.isDisplayed());
 
@@ -75,7 +74,10 @@ public class LoginDataProviderTest extends BaseDriver {
         }
     }
 
-    // 5) TestNG DataProvider kullanarak farklı kullanıcı adları ve şifrelerle giriş yapmayı sağlıyoruz.
+    /**
+     * Data Provider:
+     * Supplies multiple sets of usernames and passwords for the login test.
+     */
     @DataProvider(name = "loginCredentials")
     public Object[][] loginCredentials() {
         return new Object[][]{
