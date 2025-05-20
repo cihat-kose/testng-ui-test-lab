@@ -1,27 +1,25 @@
-
-Konu: HTML Reporting
+Topic: HTML Reporting
 
 Summary:
 
-TestNG, test sonuçlarını bir HTML formatında raporlayabilme özelliğine sahiptir.
-Bu raporlar, hangi testlerin başarılı, hangi testlerin başarısız olduğunu ve hata mesajlarını içeren detaylı bilgileri sunar.
+TestNG provides the capability to report test results in an HTML format.
+These reports include detailed information about which tests passed or failed, along with error messages.
 
-TestNG'nin varsayılan raporlama mekanizması, otomatik olarak çalıştırılan testlerden sonra HTML raporları oluşturur.
-Bu raporlar, `test-output` dizini içinde bulunur ve `index.html` dosyası üzerinden görüntülenebilir.
+TestNG’s default reporting mechanism automatically generates HTML reports after test execution.
+These reports are located in the `test-output` directory and can be viewed via the `index.html` file.
 
-Özel raporlar oluşturmak için `ITestListener` arayüzü de kullanılabilir.
-Bu arayüz, testlerin başlaması, başarılı veya başarısız olması gibi olayları yakalamaya olanak tanır
-ve kullanıcıya özelleştirilmiş HTML raporları oluşturmada esneklik sağlar.
+To create custom reports, the `ITestListener` interface can also be used.
+This interface allows tracking of test events such as start, success, or failure, offering flexibility in generating customized HTML reports.
 
-- Varsayılan HTML Raporu:
-  - TestNG otomatik olarak `test-output` klasörü altında `index.html` dosyasını oluşturur. Bu raporda:
-    - Testlerin adı ve sonuçları (PASSED, FAILED, SKIPPED)
-    - Hata mesajları ve yığın izleri (stack trace)
-    - Testlerin çalıştırılma süresi
+- Default HTML Report:
+  - TestNG automatically generates the `index.html` file under the `test-output` folder. This report includes:
+    - Names and results of tests (PASSED, FAILED, SKIPPED)
+    - Error messages and stack traces
+    - Test execution duration
 
-- Özelleştirilmiş Raporlar:
-  - `ITestListener` arayüzü kullanılarak raporlar özelleştirilebilir.
-  - Bu arayüz ile testin durumu hakkında bilgi almak ve raporu özelleştirmek mümkündür.
+- Custom Reports:
+  - Reports can be customized using the `ITestListener` interface.
+  - With this interface, it is possible to obtain test status information and tailor the reports accordingly.
 
-Kısacası, HTML raporları testlerin sonuçlarını görsel ve anlaşılır bir biçimde sunar.
-Varsayılan raporlar yeterli olduğu gibi, gerektiğinde özelleştirilebilir raporlar da oluşturulabilir.
+In summary, HTML reports provide a clear and visual representation of test results.
+The default reports are usually sufficient, but custom reports can be created when needed.
