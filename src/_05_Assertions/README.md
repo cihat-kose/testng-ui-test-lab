@@ -1,6 +1,4 @@
-Topic: TestNG Assertions
-
-Summary:
+# TestNG Assertions
 
 TestNG assertions are used to verify whether tests have passed or failed.
 Assertions are essential tools for validating expected outcomes in test cases.

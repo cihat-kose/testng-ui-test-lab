@@ -1,6 +1,4 @@
-Topic: TestNG Enable/Disable Annotations
-
-Summary:
+# TestNG Enable/Disable Annotations
 
 In TestNG, annotations like `enabled` and `@Ignore` are used to control whether a test method should be executed.
 These are helpful when you want to temporarily disable or skip certain test methods.

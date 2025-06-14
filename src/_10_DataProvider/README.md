@@ -1,6 +1,4 @@
-Topic: Testing with Data Providers
-
-Summary:
+# Testing with Data Providers
 
 In TestNG, a "Data Provider" is used to run the same test multiple times with different sets of input data.
 This feature allows parameterized execution of test methods with dynamic and flexible test data.

@@ -1,6 +1,4 @@
-Topic: TestNG Groups
-
-Summary:
+# TestNG Groups
 
 TestNG Groups allow you to categorize test methods, enabling selective execution of specific sets of tests.
 Grouping tests helps manage large-scale projects and focus on relevant scenarios more efficiently.

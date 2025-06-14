@@ -1,6 +1,4 @@
-Subject: Cross Browser Testing
-
-Summary:
+# Cross Browser Testing
 
 Cross Browser Testing is the process of verifying that a web application works correctly across different web browsers.
 By using Selenium WebDriver together with TestNG, the same test scenarios can be executed on multiple browsers.

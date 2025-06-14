@@ -1,6 +1,4 @@
-Topic: TestNG Annotations
-
-Summary:
+# TestNG Annotations
 
 In the TestNG framework, tests are managed using various annotations.
 These annotations control when and how each test method is executed.

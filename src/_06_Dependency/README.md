@@ -1,6 +1,4 @@
-Topic: TestNG Dependency (dependsOnMethods & dependsOnGroups)
-
-Summary:
+# TestNG Dependency (dependsOnMethods & dependsOnGroups)
 
 - TestNG provides dependency management between test methods.
   This allows certain test methods to be executed only if other methods (or groups) pass.

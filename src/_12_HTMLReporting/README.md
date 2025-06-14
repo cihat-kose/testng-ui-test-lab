@@ -1,4 +1,29 @@
-// Steps to Create an HTML Report:
+# HTML Reporting
+
+TestNG provides the capability to report test results in an HTML format.
+These reports include detailed information about which tests passed or failed, along with error messages.
+
+TestNG’s default reporting mechanism automatically generates HTML reports after test execution.
+These reports are located in the `test-output` directory and can be viewed via the `index.html` file.
+
+To create custom reports, the `ITestListener` interface can also be used.
+This interface allows tracking of test events such as start, success, or failure, offering flexibility in generating customized HTML reports.
+
+- Default HTML Report:
+  - TestNG automatically generates the `index.html` file under the `test-output` folder. This report includes:
+    - Names and results of tests (PASSED, FAILED, SKIPPED)
+    - Error messages and stack traces
+    - Test execution duration
+
+- Custom Reports:
+  - Reports can be customized using the `ITestListener` interface.
+  - With this interface, it is possible to obtain test status information and tailor the reports accordingly.
+
+In summary, HTML reports provide a clear and visual representation of test results.
+The default reports are usually sufficient, but custom reports can be created when needed.
+
+
+## Steps to Create an HTML Report:
 
 1. Module Selection:
    - Select and run the module (test class, package, or project) for which you want to generate an HTML report.

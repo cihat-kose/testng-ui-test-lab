@@ -1,6 +1,4 @@
-Topic: TestNG Introduction
-
-Summary:
+# TestNG Introduction
 
 TestNG is an open-source test automation framework for Java.
 TestNG (Test Next Generation) was developed to address the shortcomings

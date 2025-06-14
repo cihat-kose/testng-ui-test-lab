@@ -1,6 +1,4 @@
-Topic: Logging Configuration with Log4j2
-
-Summary:
+# Logging Configuration with Log4j2
 
 Log4j2 is a powerful logging library that allows you to log messages in your applications.
 Logs can be written to both the console and files. Logging levels determine how messages are categorized based on their severity.
