@@ -1,6 +1,4 @@
-Topic: TestNG Priority-Sorting
-
-Summary:
+# TestNG Priority-Sorting
 
 TestNG allows setting the execution order of test methods using priorities.
 By applying the @Test(priority = x) annotation, you can assign priority to test methods.

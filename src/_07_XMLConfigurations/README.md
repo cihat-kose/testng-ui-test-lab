@@ -1,6 +1,5 @@
-Subject: TestNG XML Configurations
+# TestNG XML Configurations
 
-Summary:
 TestNG XML Configurations are a vital feature for managing and organizing automated tests efficiently.
 These XML files work alongside the TestNG framework to define test suites, individual tests, groups, and dependencies in a structured manner.
 
